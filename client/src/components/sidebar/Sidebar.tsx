@@ -1,6 +1,7 @@
 import { ButtonBase, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
 import getAllBoards from "../../api/getAllBoards";
@@ -9,11 +10,10 @@ import deleteBoard from "../../api/deleteBoard";
 const useStyles = makeStyles({
   sidebar: {
     height: "100%",
-    width: "15%",
+    width: "100%",
     display: "flex",
     flexDirection: "column",
     backgroundColor: "gray",
-    minWidth: "150px",
   },
   sidebarBoards: {
     marginLeft: "10px",
@@ -51,11 +51,11 @@ interface Board {
 }
 
 interface SidebarProps {
-  setActiveBoard(id:number): void;
+  setActiveBoard(id: number): void;
   activeBoard: number;
 }
 
-const Sidebar = ({setActiveBoard, activeBoard}: SidebarProps) => {
+const Sidebar = ({ setActiveBoard, activeBoard }: SidebarProps) => {
   const classes = useStyles();
   const [displayingBoards, setDisplayingBoards] = useState(false);
   const [allBoards, setAllBoards] = useState<Board[]>([]);
@@ -126,7 +126,12 @@ const Sidebar = ({setActiveBoard, activeBoard}: SidebarProps) => {
                           {board.name}
                         </Typography>
                       </Grid>
-                      <Grid item justifyContent="center" className={classes.trashIcon} xs={4}>
+                      <Grid
+                        item
+                        justifyContent="center"
+                        className={classes.trashIcon}
+                        xs={4}
+                      >
                         <DeleteIcon
                           sx={{ transform: "scale(0.6)", display: "block" }}
                           onClick={() => {
@@ -145,6 +150,10 @@ const Sidebar = ({setActiveBoard, activeBoard}: SidebarProps) => {
         ) : (
           ""
         )}
+        <ButtonBase>
+          <AddIcon sx={{transform: "scale(0.6)"}} />
+          Add a Board
+        </ButtonBase>
       </div>
     </div>
   );
