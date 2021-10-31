@@ -23,8 +23,8 @@ const BoardDisplay = ({
       >
         <div
             style={{
-                height: "50%",
-                width: "50%",
+                height: "40%",
+                width: "45%",
                 backgroundColor: "white",
                 display: "flex",
                 flexDirection: "column",
@@ -33,7 +33,7 @@ const BoardDisplay = ({
             }}
         >
             <Typography variant="h5" align="center" style={{marginTop: "2%"}}>Add a Board</Typography>
-            <TextField label="Board Name" ></TextField>
+            <TextField label="Board Name" variant="standard"></TextField>
             <ButtonBase style={{backgroundColor: "#8F8F8F", padding: "10px", borderRadius: "10px"}}>Add Board</ButtonBase>
         </div>
       </Modal>

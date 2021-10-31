@@ -155,15 +155,19 @@ const Sidebar = ({
         ) : (
           ""
         )}
-        <ButtonBase 
+      </div>
+      <ButtonBase 
           onClick={()=>{
             setAddBoardModalOpen(true);
           }}
+          sx={{
+            paddingY: "10px",
+            width: "100%"
+          }}
         >
-          <AddIcon sx={{ transform: "scale(0.6)" }} />
+          <AddIcon sx={{ transform: "scale(0.6)"}} />
           Add a Board
         </ButtonBase>
-      </div>
     </div>
   );
 };
