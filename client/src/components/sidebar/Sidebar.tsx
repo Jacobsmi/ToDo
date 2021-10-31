@@ -53,9 +53,14 @@ interface Board {
 interface SidebarProps {
   setActiveBoard(id: number): void;
   activeBoard: number;
+  setAddBoardModalOpen(value: boolean): void;
 }
 
-const Sidebar = ({ setActiveBoard, activeBoard }: SidebarProps) => {
+const Sidebar = ({
+  setActiveBoard,
+  activeBoard,
+  setAddBoardModalOpen,
+}: SidebarProps) => {
   const classes = useStyles();
   const [displayingBoards, setDisplayingBoards] = useState(false);
   const [allBoards, setAllBoards] = useState<Board[]>([]);
@@ -150,8 +155,12 @@ const Sidebar = ({ setActiveBoard, activeBoard }: SidebarProps) => {
         ) : (
           ""
         )}
-        <ButtonBase>
-          <AddIcon sx={{transform: "scale(0.6)"}} />
+        <ButtonBase 
+          onClick={()=>{
+            setAddBoardModalOpen(true);
+          }}
+        >
+          <AddIcon sx={{ transform: "scale(0.6)" }} />
           Add a Board
         </ButtonBase>
       </div>

@@ -17,14 +17,19 @@ const Mainpage = () => {
   const [addBoardModalOpen, setAddBoardModalOpen] = useState<boolean>(false);
   return (
     <div className={classes.mainpage}>
-      <Grid container sx={{minWidth: "800px"}}>
+      <Grid container sx={{ minWidth: "800px" }}>
         <Grid item xs={3} md={2}>
-          <Sidebar setActiveBoard={setActiveBoard} activeBoard={activeBoard} />
+          <Sidebar
+            setActiveBoard={setActiveBoard}
+            activeBoard={activeBoard}
+            setAddBoardModalOpen={setAddBoardModalOpen}
+          />
         </Grid>
         <Grid item xs={9} md={10}>
           <BoardDisplay
             activeBoardID={activeBoard}
             addBoardModalOpen={addBoardModalOpen}
+            setAddBoardModalOpen={setAddBoardModalOpen}
           />
         </Grid>
       </Grid>
