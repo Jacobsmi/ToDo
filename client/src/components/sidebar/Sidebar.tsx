@@ -3,9 +3,9 @@ import { makeStyles } from "@mui/styles";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useEffect, useState } from "react";
 import deleteBoard from "../../api/deleteBoard";
 import { Board } from "../mainpage/Mainpage";
+import { useState } from "react";
 
 const useStyles = makeStyles({
   sidebar: {

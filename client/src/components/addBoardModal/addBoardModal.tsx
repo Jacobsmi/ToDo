@@ -1,11 +1,19 @@
 import { ButtonBase, Modal, TextField, Typography } from "@mui/material";
 
 interface AddBoardModalProps {
-	addBoardModalOpen: boolean;
-	setAddBoardModalOpen(value: boolean): void;
+  addBoardModalOpen: boolean;
+  setAddBoardModalOpen(value: boolean): void;
 }
 
-const AddBoardModal = ({addBoardModalOpen, setAddBoardModalOpen, }: AddBoardModalProps) => {
+const AddBoardModal = ({
+  addBoardModalOpen,
+  setAddBoardModalOpen,
+}: AddBoardModalProps) => {
+  
+  const handleAddClick = () => {
+    console.log("Add Button was clicked");
+  };
+
   return (
     <div className="AddBoardModal">
       <Modal
@@ -33,17 +41,14 @@ const AddBoardModal = ({addBoardModalOpen, setAddBoardModalOpen, }: AddBoardModa
           <Typography variant="h5" align="center" style={{ marginTop: "2%" }}>
             Add a Board
           </Typography>
-          <TextField
-            label="Board Name"
-            variant="standard"
-          ></TextField>
+          <TextField label="Board Name" variant="standard"></TextField>
           <ButtonBase
             style={{
               backgroundColor: "#8F8F8F",
               padding: "10px",
               borderRadius: "10px",
             }}
-            onClick={() => {}}
+            onClick={handleAddClick}
           >
             Add Board
           </ButtonBase>
