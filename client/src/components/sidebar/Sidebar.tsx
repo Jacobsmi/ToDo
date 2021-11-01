@@ -4,8 +4,8 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
-import getAllBoards from "../../api/getAllBoards";
 import deleteBoard from "../../api/deleteBoard";
+import { Board } from "../mainpage/Mainpage";
 
 const useStyles = makeStyles({
   sidebar: {
@@ -45,39 +45,23 @@ const useStyles = makeStyles({
   },
 });
 
-interface Board {
-  id: number;
-  name: string;
-}
-
 interface SidebarProps {
   setActiveBoard(id: number): void;
   activeBoard: number;
   setAddBoardModalOpen(value: boolean): void;
+  setAllBoards(boards: Board[]): void;
+  allBoards: Board[];
 }
 
 const Sidebar = ({
   setActiveBoard,
   activeBoard,
   setAddBoardModalOpen,
+  setAllBoards,
+  allBoards 
 }: SidebarProps) => {
   const classes = useStyles();
   const [displayingBoards, setDisplayingBoards] = useState(false);
-  const [allBoards, setAllBoards] = useState<Board[]>([]);
-
-  useEffect(() => {
-    async function getBoardsApiCall() {
-      const boardsAPIRes = await getAllBoards();
-      if (boardsAPIRes.status === "failure") {
-        alert(
-          "Failed to get boards from the API. Please check the API or try again later."
-        );
-      } else {
-        setAllBoards(boardsAPIRes.boards);
-      }
-    }
-    getBoardsApiCall();
-  }, []);
 
   const handleDeleteClick = async (id: number) => {
     const apiResponse = await deleteBoard(id);
