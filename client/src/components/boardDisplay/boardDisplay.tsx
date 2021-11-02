@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import { Board } from "../mainpage/Mainpage";
 
 interface BoardDisplayProps {
@@ -7,13 +8,20 @@ interface BoardDisplayProps {
   allBoards: Board[];
 }
 
-const BoardDisplay = ({
-  activeBoardID,
-}: BoardDisplayProps) => {
-
+const BoardDisplay = ({ activeBoardID }: BoardDisplayProps) => {
   return (
-    <div className="BoardDisplay">
-      {activeBoardID}
+    <div
+      className="BoardDisplay"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      <Grid container>
+        <Grid item xs={6} display="flex" justifyContent="right">
+          Header Text
+        </Grid>
+        <Grid item xs={6} display="flex" justifyContent="right">
+          Add a Task
+        </Grid>
+      </Grid>
     </div>
   );
 };

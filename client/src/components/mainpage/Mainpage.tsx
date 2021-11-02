@@ -62,6 +62,8 @@ const Mainpage = () => {
         <AddBoardModal
           addBoardModalOpen={addBoardModalOpen}
           setAddBoardModalOpen={setAddBoardModalOpen}
+          setAllBoards={setAllBoards}
+          allBoards={allBoards}
         />
       </Grid>
     </div>

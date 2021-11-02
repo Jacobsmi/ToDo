@@ -22,14 +22,30 @@ app.get("/boards", async (req: Request, res: Response) => {
 });
 
 app.delete("/boards", async (req: Request, res: Response) => {
-    try{
-        const conn = await pool.connect();
-        const queryResults = await conn.query("DELETE FROM boards WHERE id=$1;", [req.body.id]);
-        conn.release();
-        return res.send({ status: "success", boards: queryResults.rows });
-    }catch(e){
-        return res.send({status: "failure"})
-    }
+  try {
+    const conn = await pool.connect();
+    const queryResults = await conn.query("DELETE FROM boards WHERE id=$1;", [
+      req.body.id,
+    ]);
+    conn.release();
+    return res.send({ status: "success", boards: queryResults.rows });
+  } catch (e) {
+    return res.send({ status: "failure" });
+  }
+});
+
+app.post("/boards", async (req: Request, res: Response) => {
+  try{
+    const conn = await pool.connect();
+    const queryResults = await conn.query("INSERT INTO boards(name) VALUES($1) RETURNING id;", [
+      req.body.name,
+    ]);
+    conn.release();
+    return res.send({ status: "success", id: queryResults.rows[0].id});
+  }catch (e) {
+    console.log(e);
+    return res.send({ status: "failure" });
+  }
 });
 
 app.listen(5000, () => {

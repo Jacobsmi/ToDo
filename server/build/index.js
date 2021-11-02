@@ -80,13 +80,39 @@ app.delete("/boards", function (req, res) { return __awaiter(void 0, void 0, voi
                 return [4 /*yield*/, createPool_1.pool.connect()];
             case 1:
                 conn = _a.sent();
-                return [4 /*yield*/, conn.query("DELETE FROM boards WHERE id=$1;", [req.body.id])];
+                return [4 /*yield*/, conn.query("DELETE FROM boards WHERE id=$1;", [
+                        req.body.id,
+                    ])];
             case 2:
                 queryResults = _a.sent();
                 conn.release();
                 return [2 /*return*/, res.send({ status: "success", boards: queryResults.rows })];
             case 3:
                 e_2 = _a.sent();
+                return [2 /*return*/, res.send({ status: "failure" })];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); });
+app.post("/boards", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var conn, queryResults, e_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                return [4 /*yield*/, createPool_1.pool.connect()];
+            case 1:
+                conn = _a.sent();
+                return [4 /*yield*/, conn.query("INSERT INTO boards(name) VALUES($1) RETURNING id;", [
+                        req.body.name,
+                    ])];
+            case 2:
+                queryResults = _a.sent();
+                conn.release();
+                return [2 /*return*/, res.send({ status: "success", id: queryResults.rows[0].id })];
+            case 3:
+                e_3 = _a.sent();
+                console.log(e_3);
                 return [2 /*return*/, res.send({ status: "failure" })];
             case 4: return [2 /*return*/];
         }
